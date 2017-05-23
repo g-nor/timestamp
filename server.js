@@ -17,6 +17,8 @@ const months = [
 
 let app = express();
 
+app.set('port', (process.env.PORT || 5000));
+
 app.get("/:date", (req, res) => {
   let result = { unix: null, natural: null };
   let d = null;
@@ -53,4 +55,7 @@ app.get("/", (req, res) => {
             "</body></html>";
     res.send(html);
 })
-app.listen(8080);
+
+app.listen(app.get('port'), function() {
+  console.log('Timestamp is running on port', app.get('port'));
+});
